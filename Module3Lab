@@ -1,1 +1,32 @@
+#header and user prompt
+print("***************************************")
+print("My Coffee and Muffin Shop")
+num_coffees = int(input("Number of coffees bought? "))
+num_muffins = int(input("Number of muffins bought? "))
+print("***************************************\n")
+
+#prices
+coffee_price = 5.0
+muffin_price = 4.0
+
+#calculate subtotal
+subtotal = (num_coffees * coffee_price) + (num_muffins * muffin_price)
+
+#calculate tax + total
+tax = round(subtotal * 0.06, 2)
+total = round(subtotal + tax, 2)
+
+#display number of muffins and coffees purchased w/ their cost
+print("***************************************")
+print("My Coffee and Muffin Shop Receipt")
+print(f"{num_coffees} Coffee at $5 each: $ {num_coffees * coffee_price:.2f}")
+print(f"{num_muffins} Muffins at $4 each: $ {num_muffins * muffin_price:.2f}")
+
+#display tax amount
+print(f"6% tax: $ {tax:.2f}")
+print("---------")
+
+#print total
+print(f"Total: $ {total:.2f}")
+print("***************************************")
 
