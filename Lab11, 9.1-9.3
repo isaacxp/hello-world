@@ -1,0 +1,100 @@
+#9.1
+
+# write_grades.py
+
+def main():
+    with open('grades.txt', 'w') as f:
+        # Header, just like "Account Name Balance"
+        print(f"{'Grade':<10}", file=f)
+
+        while True:
+            entry = input("Grade (blank to finish): ").strip()
+            if not entry:
+                break
+            try:
+                g = float(entry)
+            except ValueError:
+                print("  → Please enter a number.")
+                continue
+
+            # One grade per line, left-aligned in 10 chars
+            print(f"{g:<10.2f}", file=f)
+
+if __name__ == "__main__":
+    main()
+
+    #9.2
+
+# read_grades.py
+
+def main():
+    total = 0.0
+    count = 0
+
+    with open('grades.txt', 'r') as f:
+        # print header
+        print(f"{'Grade':<10}")
+
+        for record in f:
+            text = record.strip()
+            # skip blank lines or the header word "grade"
+            if not text or text.lower() == 'grade':
+                continue
+
+            # converts the entire line to a float
+            try:
+                g = float(text)
+            except ValueError:
+                # skip any garbage lines
+                continue
+
+            # print in a 10-char left-aligned column
+            print(f"{g:<10.2f}")
+            total += g
+            count += 1
+
+    # footer
+    print()  # blank line
+    if count:
+        avg = total / count
+    else:
+        avg = 0.0
+
+    print(f"{'Total:':<10}{total:<10.2f}")
+    print(f"{'Count:':<10}{count:<10}")
+    print(f"{'Average:':<10}{avg:<10.2f}")
+
+if __name__ == "__main__":
+    main()
+
+# 9.3
+
+import csv
+
+def main():
+    with open('grades.csv', mode='w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        # header row
+        writer.writerow(['firstname', 'lastname', 'exam1grade', 'exam2grade', 'exam3grade'])
+
+        while True:
+            first = input("First name (blank to finish): ").strip()
+            if not first:
+                break
+            last = input("Last name: ").strip()
+
+            exams = []
+            for i in (1, 2, 3):
+                while True:
+                    val = input(f"  Exam {i} grade: ").strip()
+                    try:
+                        exams.append(int(val))
+                        break
+                    except ValueError:
+                        print("    → Please enter a whole-number grade.")
+
+            # Write the student record as one CSV row
+            writer.writerow([first, last] + exams)
+
+if __name__ == "__main__":
+    main()
