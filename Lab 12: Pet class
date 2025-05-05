@@ -1,0 +1,56 @@
+class Pet:
+    # A Pet class with private fields and mutators/accessors.
+    def __init__(self, n: str = "", t: str = "", a: int = 0):
+        # private via name mangling
+        self.__name = n
+        self.__type = t
+        self.__age = a
+
+    # mutators
+    def setName(self, n: str) -> None:
+        self.__name = n
+
+    def setType(self, t: str) -> None:
+        self.__type = t
+
+    def setAge(self, a: int) -> None:
+        self.__age = a
+
+    # Accessors
+    def getName(self) -> str:
+        return self.__name
+
+    def getType(self) -> str:
+        return self.__type
+
+    def getAge(self) -> int:
+        return self.__age
+
+
+def main():
+    # input variables
+    inputName: str
+    inputType: str
+    inputAge: int
+
+    # class variable to hold a pet
+    animal = Pet()      # Set Animal = new Pet()
+
+    # Get values for a pet
+    inputName = input("Enter your pet's name : ")
+    animal.setName(inputName)
+
+    inputType = input("Enter your pet's type : ")
+    animal.setType(inputType)
+
+    inputAge = int(input("Enter your pet's age : "))
+    animal.setAge(inputAge)
+
+    # Show values for this pet
+    print("Your pet name :", animal.getName())
+    print("Your pet type :", animal.getType())
+    print("Your pet age :", animal.getAge())
+
+
+if __name__ == "__main__":
+    main()
